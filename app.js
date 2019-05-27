@@ -31,6 +31,7 @@ app.get('/', function (req, res) {
 
             console.log(res.body);
         });
+        return res.json({ message: 'ok' });
        /* let callback = (error, response, body) => {
             if (!error && response.status == 200) {
                 console.log('Raw result', body);
