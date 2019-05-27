@@ -27,10 +27,15 @@ app.get('/', function (req, res) {
         req.send("<Envelope xmlns=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <Body>\n        <queryTCRM xmlns=\"http://action.trm.services.generic.action.superfinanciera.nexura.sc.com.co/\">\n            <tcrmQueryAssociatedDate xmlns=\"\">2019-05-29</tcrmQueryAssociatedDate>\n        </queryTCRM>\n    </Body>\n</Envelope>");
 
         req.end(function (res) {
-            if (res.error) throw new Error(res.error);
+            if(res.error){
+                return res.json({ message: 'bad' });
+            }else{
+                console.log(res.body);
 
-            console.log(res.body);
-            return res.json({ message: res.body });
+                return res.json({ message: 'ok' });
+            }
+
+            
         });
         
        /* let callback = (error, response, body) => {
