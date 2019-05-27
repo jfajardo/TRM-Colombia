@@ -4,7 +4,8 @@
   "description": "API REST, return TRM Colombia",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "now-start": "node app.js"
   },
   "author": "Makaw Dev",
   "license": "MIT",
@@ -13,6 +14,7 @@
     "babel-preset-es2015": "^6.24.1",
     "express": "^4.17.1",
     "now": "^15.3.0",
-    "unirest": "^0.6.0"
+    "unirest": "^0.6.0",
+    "xml-js": "^1.6.11"
   }
 }
