@@ -42,7 +42,6 @@ app.get('/', function (req, res) {
                         "value": JSON.parse(result["soap:Envelope"]["soap:Body"]["ns2:queryTCRMResponse"]["return"]["value"]["_text"]),
                         "success": JSON.parse(result["soap:Envelope"]["soap:Body"]["ns2:queryTCRMResponse"]["return"]["success"]["_text"]),
                     },
-                    "dev": "Jonhatan Fajardo",
                     "web": "www.makaw.dev"
                 });
             }
