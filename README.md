@@ -9,7 +9,7 @@ See [SOAP - Web Service](https://www.superfinanciera.gov.co/SuperfinancieraWebSe
 # How work?
 Only pass the date in format **YYY-MM-DD** to URL
 ```sh
-https://trm-colombia.makaw-dev.now.sh/?date=2018-12-31
+https://trm-colombia.vercel.app/?date=2018-12-31
 ```
 and return a JSON object:
 ```json
