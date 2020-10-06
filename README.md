@@ -33,4 +33,3 @@ MIT
 
 
 ### Developed by [Makaw Dev](http://makaw.dev) 
-![logo-makaw-dev](https://makaw.dev/static/img/logo.svg)
