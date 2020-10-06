@@ -3,6 +3,8 @@ var app = express();
 var unirest = require("unirest");
 var convert = require('xml-js');
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 app.get('/', function (req, res) {
     let date = req.query.date;
     if (date === undefined) {
