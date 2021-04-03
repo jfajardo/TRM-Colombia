@@ -3,6 +3,8 @@ var app = express();
 var unirest = require("unirest");
 var convert = require('xml-js');
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 app.get('/', function (req, res) {
     let date = req.query.date;
     if (date === undefined) {
@@ -33,17 +35,21 @@ app.get('/', function (req, res) {
                 res.status(500);
                 return res.json({ message: 'Server error' });
             } else {
-                let result = JSON.parse(convert.xml2json(response.body, { compact: true }));
-                return res.json({
-                    "data": {
-                        "unit": result["soap:Envelope"]["soap:Body"]["ns2:queryTCRMResponse"]["return"]["unit"]["_text"],
-                        "validityFrom": new Date(result["soap:Envelope"]["soap:Body"]["ns2:queryTCRMResponse"]["return"]["validityFrom"]["_text"]),
-                        "validityTo": new Date(result["soap:Envelope"]["soap:Body"]["ns2:queryTCRMResponse"]["return"]["validityTo"]["_text"]),
-                        "value": JSON.parse(result["soap:Envelope"]["soap:Body"]["ns2:queryTCRMResponse"]["return"]["value"]["_text"]),
-                        "success": JSON.parse(result["soap:Envelope"]["soap:Body"]["ns2:queryTCRMResponse"]["return"]["success"]["_text"]),
-                    },
-                    "web": "www.makaw.dev"
-                });
+                try{
+                    let result = JSON.parse(convert.xml2json(response.body, { compact: true }));
+                    return res.json({
+                        "data": {
+                            "unit": result["soap:Envelope"]["soap:Body"]["ns2:queryTCRMResponse"]["return"]["unit"]["_text"],
+                            "validityFrom": new Date(result["soap:Envelope"]["soap:Body"]["ns2:queryTCRMResponse"]["return"]["validityFrom"]["_text"]),
+                            "validityTo": new Date(result["soap:Envelope"]["soap:Body"]["ns2:queryTCRMResponse"]["return"]["validityTo"]["_text"]),
+                            "value": JSON.parse(result["soap:Envelope"]["soap:Body"]["ns2:queryTCRMResponse"]["return"]["value"]["_text"]),
+                            "success": JSON.parse(result["soap:Envelope"]["soap:Body"]["ns2:queryTCRMResponse"]["return"]["success"]["_text"]),
+                        },
+                        "web": "www.makaw.dev"
+                    });
+                }catch(e){
+                    return res.json({ message: 'Server error' });
+                }
             }
         });
     }
